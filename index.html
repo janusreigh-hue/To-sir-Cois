@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you pass us in ICT?</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  h1 {
+    position: absolute;
+    top: 20px;
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 50px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+
+  #yes {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  #no {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+  }
+
+  .number {
+    position: absolute;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+</style>
+</head>
+<body>
+<h1>Will you pass us in ICT, please sir?</h1>
+<div class="button-container">
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
+</div>
+
+<script>
+// Make the No button teleport
+const noBtn = document.getElementById('no');
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+noBtn.addEventListener('mouseenter', moveNo);
+
+// Make the Yes button grow when hovered
+const yesBtn = document.getElementById('yes');
+yesBtn.addEventListener('mouseenter', () => {
+  yesBtn.style.transform = 'scale(1.3)';
+});
+yesBtn.addEventListener('mouseleave', () => {
+  yesBtn.style.transform = 'scale(1)';
+});
+
+// Generate scattered numbers in the background
+const numbers = [95, 93, 94, 98];
+for (let i = 0; i < 50; i++) {
+  const num = document.createElement('div');
+  num.className = 'number';
+  num.textContent = numbers[Math.floor(Math.random() * numbers.length)];
+  num.style.left = Math.random() * window.innerWidth + 'px';
+  num.style.top = Math.random() * window.innerHeight + 'px';
+  num.style.fontSize = 12 + Math.random() * 24 + 'px';
+  document.body.appendChild(num);
+}
+</script>
+</body>
+  </html>
